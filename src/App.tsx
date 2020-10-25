@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import * as pdfJs from 'pdfjs-dist';
+import { base64ToArrayBuffer, getPageText } from './Utils/pdfUtils';
 
 pdfJs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfJs.version}/pdf.worker.js`;
 
@@ -21,49 +22,40 @@ const PDF_DATA_BASE64 =
 
 const App = () => {
   const [pdfText, setPdfText] = React.useState('');
+
   React.useEffect(() => {
-    const pdfLoader = pdfJs.getDocument(base64ToArrayBuffer(PDF_DATA_BASE64)).promise;
-    pdfLoader.then((pdf) => {
-      const pdfDocument: pdfJs.PDFDocumentProxy = pdf;
-      const pagesPromises = [];
-
-      for (let i = 0; i < pdf.numPages; i++) {
-        pagesPromises.push(getPageText(i + 1, pdfDocument));
-      }
-
-      Promise.all(pagesPromises).then((pagesText) => {
-        for (let i = 0; i < pagesText.length; i++) {
-          setPdfText(pdfText + pagesText[i]);
-        }
-      });
-    });
+    loadPdfText();
   }, [])
+
+  const loadPdfText = () => {
+    const parsedPdf = base64ToArrayBuffer(PDF_DATA_BASE64);
+    const pdfLoader = pdfJs.getDocument(parsedPdf).promise;
+
+    pdfLoader.then((pdf) => {
+      setTextForAllPdfPages(pdf);
+    });
+  }
+
+  const setTextForAllPdfPages = (pdf: pdfJs.PDFDocumentProxy) => {
+    const pagesPromises = [];
+
+    for (let i = 0; i < pdf.numPages; i++) {
+      pagesPromises.push(getPageText(i + 1, pdf));
+    }
+
+    Promise.all(pagesPromises).then((pagesText) => {
+      for (let i = 0; i < pagesText.length; i++) {
+        setPdfText(pdfText + pagesText[i]);
+      }
+    });
+  }
 
   return (
     <div className="App">
-      <h1>PDF</h1>
+      <h1>Search a PDF</h1>
       <p>{pdfText}</p>
     </div>
   );
-}
-
-const base64ToArrayBuffer = (base64: string) => {
-  return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
-}
-
-const getPageText = (pageNum: number, pdf: pdfJs.PDFDocumentProxy) => {
-  return new Promise(async (resolve, reject) => {
-    const pdfPage = await pdf.getPage(pageNum);
-    const textContent = await pdfPage.getTextContent();
-    const textItems = textContent.items;
-    let finalPdfText = "";
-
-    for (let i = 0; i < textItems.length; i++) {
-      finalPdfText += textItems[i].str + " ";
-    }
-
-    resolve(finalPdfText);
-  });
 }
 
 export default App;
