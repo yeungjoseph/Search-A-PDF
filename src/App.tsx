@@ -1,40 +1,27 @@
 import React from 'react';
 import './App.css';
 import * as pdfJs from 'pdfjs-dist';
-import { base64ToArrayBuffer, getPageText } from './Utils/pdfUtils';
+import {
+  base64ToArrayBuffer,
+  BASE64_PREFIX,
+  getPageText,
+} from './Utils/pdfUtils';
 
 pdfJs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfJs.version}/pdf.worker.js`;
-
-const PDF_DATA_BASE64 =
-  'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
-  'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
-  'TWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0K' +
-  'Pj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAg' +
-  'L1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+' +
-  'PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9u' +
-  'dAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2Jq' +
-  'Cgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJU' +
-  'CjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVu' +
-  'ZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4g' +
-  'CjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAw' +
-  'MDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v' +
-  'dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G';
 
 const App = () => {
   const [pdfText, setPdfText] = React.useState('');
 
-  React.useEffect(() => {
-    loadPdfText();
-  }, [])
+  const loadPdfText = (base64pdf: string) => {
+    setPdfText('');
 
-  const loadPdfText = () => {
-    const parsedPdf = base64ToArrayBuffer(PDF_DATA_BASE64);
+    const parsedPdf = base64ToArrayBuffer(base64pdf);
     const pdfLoader = pdfJs.getDocument(parsedPdf).promise;
 
     pdfLoader.then((pdf) => {
       setTextForAllPdfPages(pdf);
     });
-  }
+  };
 
   const setTextForAllPdfPages = (pdf: pdfJs.PDFDocumentProxy) => {
     const pagesPromises = [];
@@ -44,18 +31,43 @@ const App = () => {
     }
 
     Promise.all(pagesPromises).then((pagesText) => {
+      let finalPdfText = '';
       for (let i = 0; i < pagesText.length; i++) {
-        setPdfText(pdfText + pagesText[i]);
+        finalPdfText += pagesText[i];
       }
+
+      setPdfText(finalPdfText);
     });
-  }
+  };
+
+  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    if (!e.currentTarget.files || e.currentTarget.files.length <= 0) return;
+
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+
+    reader.onload = async (fileLoadedEvent: ProgressEvent<FileReader>) => {
+      const text = fileLoadedEvent.target?.result;
+
+      if (typeof text === 'string') {
+        const base64Index = text.indexOf(BASE64_PREFIX) + BASE64_PREFIX.length;
+        const base64String = text.substr(base64Index);
+        loadPdfText(base64String);
+      }
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div className="App">
       <h1>Search a PDF</h1>
       <p>{pdfText}</p>
+      <input type="file" name="pdfUploader" onChange={uploadFile} />
     </div>
   );
-}
+};
 
 export default App;

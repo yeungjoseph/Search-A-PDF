@@ -4,11 +4,13 @@
   height: 100%;
 
   text-align: center;
-  background-color: #FFD300;
+  background-color: #ffd300;
 }
 
 /* Allow .App container to take expand to 100% height */
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
