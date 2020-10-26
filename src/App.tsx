@@ -64,8 +64,9 @@ const App = () => {
   return (
     <div className="App">
       <h1>Search a PDF</h1>
-      <p>{pdfText}</p>
       <input type="file" name="pdfUploader" onChange={uploadFile} />
+      <br />
+      <div contentEditable={true}>{pdfText}</div>
     </div>
   );
 };

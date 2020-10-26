@@ -10,7 +10,7 @@ export const getPageText = (pageNum: number, pdf: pdfJs.PDFDocumentProxy) => {
     let finalPdfText = '';
 
     for (let i = 0; i < textItems.length; i++) {
-      finalPdfText += textItems[i].str + ' ';
+      finalPdfText += textItems[i].str;
     }
 
     resolve(finalPdfText);

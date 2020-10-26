@@ -1,10 +1,9 @@
 .App {
-  display: flex;
-  flex-direction: column;
   height: 100%;
 
   text-align: center;
   background-color: #ffd300;
+  overflow: scroll;
 }
 
 /* Allow .App container to take expand to 100% height */
