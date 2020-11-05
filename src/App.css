@@ -2,8 +2,15 @@
   height: 100%;
 
   text-align: center;
-  background-color: #ffd300;
-  overflow: scroll;
+  background-color: rgb(255, 234, 130);
+}
+
+.App__title {
+  font-size: 3rem;
+  font-family: 'Cooper Black';
+  color: rgb(184, 120, 86);
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 /* Allow .App container to take expand to 100% height */
