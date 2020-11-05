@@ -7,8 +7,18 @@ import {
   getPageText,
 } from '../Utils/pdfUtils';
 import { DragAndDrop } from '../Components/DragAndDrop';
+import emptyPdfTextImg from '../Assets/duckmagnifyspeech-trans.png';
 
 pdfJs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfJs.version}/pdf.worker.js`;
+
+const emptyPdfText = (
+  <>
+    <h2 className="empty-pdf-text__header">
+      Your PDF will show up as text here
+    </h2>
+    <img src={emptyPdfTextImg} alt="duck" />
+  </>
+);
 
 export const PdfContainer = () => {
   const [pdfText, setPdfText] = React.useState('');
@@ -92,7 +102,7 @@ export const PdfContainer = () => {
       </div>
       <DragAndDrop handleDrop={handleDrop}>
         <div className="pdf-text" contentEditable={true}>
-          {pdfText}
+          {pdfText ? pdfText : emptyPdfText}
         </div>
       </DragAndDrop>
     </div>

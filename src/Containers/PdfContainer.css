@@ -31,4 +31,10 @@
   font-family: 'Arial';
   overflow-y: auto;
   overflow-x: hidden;
+  text-align: justify;
+  line-height: 1.2rem;
+}
+
+.empty-pdf-text__header {
+  text-align: center;
 }
