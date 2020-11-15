@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/searchapdf/static/css/main.0f2eda44.chunk.css",
+    "main.js": "/searchapdf/static/js/main.0b17c4b7.chunk.js",
+    "main.js.map": "/searchapdf/static/js/main.0b17c4b7.chunk.js.map",
+    "runtime-main.js": "/searchapdf/static/js/runtime-main.787f284e.js",
+    "runtime-main.js.map": "/searchapdf/static/js/runtime-main.787f284e.js.map",
+    "static/js/2.e21415d4.chunk.js": "/searchapdf/static/js/2.e21415d4.chunk.js",
+    "static/js/2.e21415d4.chunk.js.map": "/searchapdf/static/js/2.e21415d4.chunk.js.map",
+    "index.html": "/searchapdf/index.html",
+    "precache-manifest.5ec651e09e7f1a94ee2bf291dc9e8c2f.js": "/searchapdf/precache-manifest.5ec651e09e7f1a94ee2bf291dc9e8c2f.js",
+    "service-worker.js": "/searchapdf/service-worker.js",
+    "static/css/main.0f2eda44.chunk.css.map": "/searchapdf/static/css/main.0f2eda44.chunk.css.map",
+    "static/js/2.e21415d4.chunk.js.LICENSE.txt": "/searchapdf/static/js/2.e21415d4.chunk.js.LICENSE.txt",
+    "static/media/duckmagnifyspeech-trans.png": "/searchapdf/static/media/duckmagnifyspeech-trans.8ffacabc.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.787f284e.js",
+    "static/js/2.e21415d4.chunk.js",
+    "static/css/main.0f2eda44.chunk.css",
+    "static/js/main.0b17c4b7.chunk.js"
+  ]
+}
