@@ -1,7 +1,9 @@
 .App {
   height: 100%;
-
   text-align: center;
+}
+
+body {
   background-color: rgb(255, 234, 130);
 }
 
@@ -11,13 +13,6 @@
   color: rgb(184, 120, 86);
   padding-top: 20px;
   padding-bottom: 40px;
-}
-
-/* Allow .App container to take expand to 100% height */
-html,
-body,
-#root {
-  height: 100%;
 }
 
 h1 {

@@ -89,6 +89,10 @@ export const PdfContainer = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleClearPdf = () => {
+    setPdfText('');
+  };
+
   return (
     <div className="pdf-container">
       <DragAndDrop handleDrop={handleDrop}>
@@ -105,6 +109,9 @@ export const PdfContainer = () => {
           {pdfText ? pdfText : emptyPdfText}
         </div>
       </DragAndDrop>
+      <div className="clear-pdf-btn" onClick={handleClearPdf}>
+        Clear PDF
+      </div>
     </div>
   );
 };
