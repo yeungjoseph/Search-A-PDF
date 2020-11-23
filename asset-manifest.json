@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/Search-A-PDF/static/css/main.0f2eda44.chunk.css",
-    "main.js": "/Search-A-PDF/static/js/main.25a74830.chunk.js",
-    "main.js.map": "/Search-A-PDF/static/js/main.25a74830.chunk.js.map",
+    "main.css": "/Search-A-PDF/static/css/main.e77833dd.chunk.css",
+    "main.js": "/Search-A-PDF/static/js/main.d764ca76.chunk.js",
+    "main.js.map": "/Search-A-PDF/static/js/main.d764ca76.chunk.js.map",
     "runtime-main.js": "/Search-A-PDF/static/js/runtime-main.ff2392fa.js",
     "runtime-main.js.map": "/Search-A-PDF/static/js/runtime-main.ff2392fa.js.map",
     "static/js/2.e21415d4.chunk.js": "/Search-A-PDF/static/js/2.e21415d4.chunk.js",
     "static/js/2.e21415d4.chunk.js.map": "/Search-A-PDF/static/js/2.e21415d4.chunk.js.map",
     "index.html": "/Search-A-PDF/index.html",
-    "precache-manifest.c2294276fe7ed37eb690a86bbc1c3ceb.js": "/Search-A-PDF/precache-manifest.c2294276fe7ed37eb690a86bbc1c3ceb.js",
+    "precache-manifest.3bc37c9850235502117e56f02c53a09e.js": "/Search-A-PDF/precache-manifest.3bc37c9850235502117e56f02c53a09e.js",
     "service-worker.js": "/Search-A-PDF/service-worker.js",
-    "static/css/main.0f2eda44.chunk.css.map": "/Search-A-PDF/static/css/main.0f2eda44.chunk.css.map",
+    "static/css/main.e77833dd.chunk.css.map": "/Search-A-PDF/static/css/main.e77833dd.chunk.css.map",
     "static/js/2.e21415d4.chunk.js.LICENSE.txt": "/Search-A-PDF/static/js/2.e21415d4.chunk.js.LICENSE.txt",
     "static/media/duckmagnifyspeech-trans.png": "/Search-A-PDF/static/media/duckmagnifyspeech-trans.8ffacabc.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ff2392fa.js",
     "static/js/2.e21415d4.chunk.js",
-    "static/css/main.0f2eda44.chunk.css",
-    "static/js/main.25a74830.chunk.js"
+    "static/css/main.e77833dd.chunk.css",
+    "static/js/main.d764ca76.chunk.js"
   ]
 }
